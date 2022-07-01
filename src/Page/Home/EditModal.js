@@ -1,39 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 const EditModal = ({ editTask }) => {
-    const { _id } = editTask
 
+    const [reload, setIsReload] = useState(true);
+    const handleEdit = event => {
+        event.preventDefault()
+        console.log(event.target.name.value);
+        const name = event.target.name.value;
 
-    const handleEdit = (event) => {
-        event.preventdefault()
+        fetch(`http://localhost:5000/tas/${editTask._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify({ name })
+        }).then(res => res.json())
+            .then((data) => {
+                if (data.insertedId) {
+                    setIsReload(!reload)
+                }
+
+            })
+
     }
-
     return (
         <div>
             <input type="checkbox" id="order-modal" className="modal-toggle" />
 
             <div className="modal modal-bottom sm:modal-middle ">
                 <div className="modal-box">
-                    <div className="text-center p-5 flex-auto justify-center">
+                    <label htmlFor="order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
-                        <h2 className="text-xl font-bold py-4 ">Are you sure want to Edit?</h2>
-                        <form className="form-control w-full">
-                            <label class="label">
-                                <span class="label-text">What do you need to do today?</span>
-                            </label>
-                            <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xs" />
-                            <div className="modal-action">
-                                <button onClick={() => handleEdit(_id)} className="btn btn-sm btn-error">Edit</button>
-                                <label for="order-modal" className="btn btn-sm btn-success">Cancel</label>
-                            </div>
-                        </form>
-
-                    </div>
-                    {/* <div className="modal-action">
-
-                        <button onClick={() => handleDelete(_id)} className="btn btn-sm btn-error">Edit</button>
-                        <label for="order-modal" className="btn btn-sm btn-success">Cancel</label>
-                    </div> */}
+                    <form onSubmit={handleEdit} className='grid grid-cols-1 gap-5 justify-items-center mt-2'>
+                        <input type="text" name='name' placeholder='Change Task Name' className="input input-bordered w-full max-w-xs" />
+                        <input type="submit" value='Edit' className="btn btn-primary w-full max-w-xs" />
+                    </form>
                 </div>
             </div>
 
