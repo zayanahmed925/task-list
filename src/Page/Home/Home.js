@@ -6,7 +6,7 @@ const Home = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         console.log(data);
-        fetch('http://localhost:5000/tasks', {
+        fetch('https://arrogant-whistler-62087.herokuapp.com/tasks', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -22,7 +22,7 @@ const Home = () => {
     };
     return (
         <div className=''>
-            <div className=' flex justify-center items-center'>
+            <div className=' flex justify-center items-center h-[90vh]'>
                 <div class="card w-9/12 lg:w-6/12  bg-base-100 shadow-xl ">
                     <div class="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-control w-full">

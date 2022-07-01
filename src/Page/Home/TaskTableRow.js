@@ -2,15 +2,18 @@ import React, { useEffect, useState } from 'react';
 import UseComplete from '../../Hooks/UseComplete';
 import edit from '../../img/edit.png';
 import { BiEdit } from 'react-icons/bi';
-const TaskTableRow = ({ task, setEditTask }) => {
+const TaskTableRow = ({ task, setEditTask, setModal }) => {
 
     const [checked, setChecked] = useState(false);
     const [isChecked, setIsChecked] = useState();
-
+    const handleEdit = (task) => {
+        setModal(true)
+        setEditTask(task)
+    }
 
     useEffect(() => {
         if (checked === true) {
-            const url = `http://localhost:5000/tasks/${task._id}`;
+            const url = `https://arrogant-whistler-62087.herokuapp.com/tasks/${task._id}`;
             fetch(url, {
                 method: 'PUT',
                 headers: {
@@ -46,7 +49,7 @@ const TaskTableRow = ({ task, setEditTask }) => {
                 </div>
             </td>
             <th>
-                <label onClick={() => setEditTask(task)} for="order-modal" className="btn btn-xs btn-info"><BiEdit /></label>
+                <label onClick={() => handleEdit(task)} for="order-modal" className="btn btn-xs btn-info"><BiEdit /></label>
             </th>
         </tr>
     );

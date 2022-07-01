@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-const EditModal = ({ editTask }) => {
+const EditModal = ({ editTask, setEditTask, setModal }) => {
+
 
     const [reload, setIsReload] = useState(true);
     const handleEdit = event => {
@@ -8,7 +9,7 @@ const EditModal = ({ editTask }) => {
         console.log(event.target.name.value);
         const name = event.target.name.value;
 
-        fetch(`http://localhost:5000/tas/${editTask._id}`, {
+        fetch(`https://arrogant-whistler-62087.herokuapp.com/tas/${editTask._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
@@ -16,8 +17,11 @@ const EditModal = ({ editTask }) => {
             body: JSON.stringify({ name })
         }).then(res => res.json())
             .then((data) => {
-                if (data.insertedId) {
+                console.log(data);
+                if (data.acknowledged === true) {
+                    console.log('hi');
                     setIsReload(!reload)
+                    setModal(false)
                 }
 
             })

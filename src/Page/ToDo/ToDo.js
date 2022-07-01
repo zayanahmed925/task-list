@@ -5,12 +5,12 @@ import ToDoRow from './ToDoRow';
 const ToDo = () => {
     const [tasks, setTasks] = useState()
     useEffect(() => {
-        fetch('http://localhost:5000/allTasks')
+        fetch('https://arrogant-whistler-62087.herokuapp.com/tasks')
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [tasks])
     return (
-        <div className=' flex justify-center items-center'>
+        <div className=' flex justify-center items-center h-[90vh]'>
             <div class="card w-9/12 lg:w-6/12  bg-base-100 shadow-xl ">
                 <div class="card-body">
 

@@ -5,8 +5,10 @@ import TaskTableRow from './TaskTableRow';
 const TaskTable = () => {
     const [tasks, setTasks] = useState([])
     const [editTask, setEditTask] = useState(null)
+    const [modal, setModal] = useState(false)
+
     useEffect(() => {
-        fetch('http://localhost:5000/tasks')
+        fetch('https://arrogant-whistler-62087.herokuapp.com/tasks')
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [tasks])
@@ -30,17 +32,18 @@ const TaskTable = () => {
                                 task={task}
                                 key={task._id}
                                 setEditTask={setEditTask}
+                                setModal={setModal}
                             ></TaskTableRow>)
                         }
                     </tbody>
 
-
                 </table>
             </div>
             {
-                editTask && <EditModal
+                modal && <EditModal
                     editTask={editTask}
                     setEditTask={setEditTask}
+                    setModal={setModal}
                 ></EditModal>
             }
         </div>
