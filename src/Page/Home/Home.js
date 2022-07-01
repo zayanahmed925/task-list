@@ -23,7 +23,7 @@ const Home = () => {
     return (
         <div className=''>
             <div className=' flex justify-center items-center'>
-                <div class="card w-6/12  bg-base-100 shadow-xl ">
+                <div class="card w-9/12 lg:w-6/12  bg-base-100 shadow-xl ">
                     <div class="card-body">
                         <form onSubmit={handleSubmit(onSubmit)} className="form-control w-full">
                             <label class="label">

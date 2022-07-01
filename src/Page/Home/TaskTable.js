@@ -1,37 +1,48 @@
 import React, { useEffect, useState } from 'react';
+import EditModal from './EditModal';
 import TaskTableRow from './TaskTableRow';
 
 const TaskTable = () => {
-    const [tasks, setTasks] = useState()
+    const [tasks, setTasks] = useState([])
+    const [editTask, setEditTask] = useState(null)
     useEffect(() => {
         fetch('http://localhost:5000/tasks')
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [tasks])
     return (
-        <div class="overflow-x-auto w-full">
-            <table class="table w-full">
-                {/* <!-- head --> */}
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Name</th>
-                        <th>Job</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* <!-- row 1 --> */}
+        <div>
+            <div class="overflow-x-auto w-full">
+                <table class="table w-full">
+                    {/* <!-- head --> */}
+                    <thead>
+                        <tr>
+                            <th>Complete</th>
+                            <th>Task</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* <!-- row 1 --> */}
 
-                    {
-                        tasks?.map(task => <TaskTableRow
-                            task={task}
-                            key={task._id}
-                        ></TaskTableRow>)
-                    }
-                </tbody>
+                        {
+                            tasks?.map(task => <TaskTableRow
+                                task={task}
+                                key={task._id}
+                                setEditTask={setEditTask}
+                            ></TaskTableRow>)
+                        }
+                    </tbody>
 
 
-            </table>
+                </table>
+            </div>
+            {
+                editTask && <EditModal
+                    editTask={editTask}
+                    setEditTask={setEditTask}
+                ></EditModal>
+            }
         </div>
     );
 };

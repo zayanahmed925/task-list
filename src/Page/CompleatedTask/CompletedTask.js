@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import TaskTableRow from '../Home/TaskTableRow';
-import ToDoRow from './ToDoRow';
+import CompletedTaskRow from './CompletedTaskRow';
 
-const ToDo = () => {
+const CompletedTask = () => {
     const [tasks, setTasks] = useState()
     useEffect(() => {
-        fetch('http://localhost:5000/allTasks')
+        fetch('http://localhost:5000/task')
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [tasks])
@@ -21,18 +20,18 @@ const ToDo = () => {
                                 <tr>
                                     <th>No.</th>
                                     <th>Name</th>
-                                    <th>Job</th>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {/* <!-- row 1 --> */}
 
                                 {
-                                    tasks?.map((task, index) => <ToDoRow
+                                    tasks?.map((task, index) => <CompletedTaskRow
                                         key={task._id}
                                         task={task}
                                         index={index}
-                                    ></ToDoRow>)
+                                    ></CompletedTaskRow>)
                                 }
                             </tbody>
 
@@ -46,4 +45,4 @@ const ToDo = () => {
     );
 };
 
-export default ToDo;
+export default CompletedTask;
