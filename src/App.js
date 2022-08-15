@@ -18,6 +18,8 @@ function App() {
         <Route path='/calender' element={<Calender></Calender>}></Route>
       </Routes>
       <Footer></Footer>
+      {/* <a href="/home">hello</a> */}
+      {/* <h2 data-testid="mytestid">Hello</h2> */}
     </div>
   );
 }

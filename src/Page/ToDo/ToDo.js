@@ -20,8 +20,8 @@ const ToDo = () => {
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Name</th>
-                                    <th>Job</th>
+                                    <th>Task</th>
+
                                 </tr>
                             </thead>
                             <tbody>

@@ -19,8 +19,7 @@ const CompletedTask = () => {
                             <thead>
                                 <tr>
                                     <th>No.</th>
-                                    <th>Name</th>
-
+                                    <th>Task</th>
                                 </tr>
                             </thead>
                             <tbody>

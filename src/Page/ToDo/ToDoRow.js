@@ -14,9 +14,6 @@ const ToDoRow = ({ task, index }) => {
                     </div>
                 </div>
             </td>
-            <th>
-                <button class="btn btn-ghost btn-xs">Edit</button>
-            </th>
         </tr>
     );
 };

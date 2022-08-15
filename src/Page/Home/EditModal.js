@@ -37,7 +37,7 @@ const EditModal = ({ editTask, setEditTask, setModal }) => {
 
                     <form onSubmit={handleEdit} className='grid grid-cols-1 gap-5 justify-items-center mt-2'>
                         <input type="text" name='name' placeholder='Change Task Name' className="input input-bordered w-full max-w-xs" />
-                        <input type="submit" value='Edit' className="btn btn-primary w-full max-w-xs" />
+                        <input type="submit" value='Edit' className="btn btn-info w-full max-w-xs" />
                     </form>
                 </div>
             </div>
